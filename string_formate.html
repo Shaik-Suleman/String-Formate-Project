@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            width: 100%;
+            text-align: center;
+            height: 5vh;
+            font-size: 1.5rem;
+        }
+
+        .main {
+            height: 15vh;
+            width: 100%;
+            background-color: black;
+            color: white;
+            position: relative;
+            margin-top: 10vh;
+            border-radius: 10px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .main p {
+            width: fit-content;
+            height: 5vh;
+            background-color: blue;
+            position: absolute;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            padding: .5vw 1vw;
+            top: -40%;
+            left: 5%;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" placeholder="enter the string" value="Hello! This Shaik Suleman">
+    <div class="main">
+        <h1 class="lowercase"></h1>
+        <p>LowerCase</p>
+    </div>
+    <div class="main">
+        <h1 class="uppercase"></h1>
+        <p>UpperCase</p>
+    </div>
+    <div class="main">
+        <h1 class="camelcase"></h1>
+        <p>CamelCase</p>
+    </div>
+    <div class="main">
+        <h1 class="snakecase"></h1>
+        <p>SnakeCase</p>
+    </div>
+    <div class="main">
+        <h1 class="kabebcase"></h1>
+        <p>KabebCase</p>
+    </div>
+    <div class="main">
+        <h1 class="trimcase"></h1>
+        <p>TrimCase</p>
+    </div>
+    <script>
+        let input = document.querySelector("input")
+        let lowercase = document.querySelector(".lowercase")
+        let uppercase = document.querySelector(".uppercase")
+        let camelcase = document.querySelector(".camelcase")
+        let snakecase=document.querySelector(".snakecase")
+        let kabebcase=document.querySelector(".kabebcase")
+        let trimcase=document.querySelector(".trimcase")
+
+        function capitalize(str){
+            return str[0].toUpperCase()+ str.slice(1,str.lenght)
+
+        }
+        function tocamelcase(str){
+            const small=str.toLowerCase()
+            const split=small.split(" ")
+            const final=split.map((e,i)=>{
+                if(i===0) return e
+                return capitalize(e)
+            })
+            return final.join("");
+        }
+        function tosnakecase(str){
+           
+            return str.replaceAll(" ","_")
+        }
+        function tokabebcase(str){
+           
+           return str.replaceAll(" ","-")
+       }
+       function totrimcase(str){
+           
+           return str.replaceAll(" ","")
+       }
+        lowercase.innerText = input.value.trim().toLowerCase()
+        uppercase.innerText = input.value.trim().toUpperCase()
+        camelcase.innerText=tocamelcase(input.value.trim())
+        snakecase.innerText=tosnakecase(input.value.trim())
+        kabebcase.innerText=tokabebcase(input.value.trim())
+        trimcase.innerText=totrimcase(input.value.trim())
+        input.addEventListener("input", (e) => {
+            lowercase.innerText = e.target.value.trim().toLowerCase()
+            uppercase.innerText = e.target.value.toUpperCase()
+            camelcase.innerText=tocamelcase(e.target.value.trim())
+            snakecase.innerText=tosnakecase(input.value.trim())
+            kabebcase.innerText=tokabebcase(e.target.value.trim())
+            trimcase.innerText=totrimcase(e.target.value.trim())
+        })
+
+    </script>
+</body>
+
+</html>
